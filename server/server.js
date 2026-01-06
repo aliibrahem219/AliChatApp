@@ -16,9 +16,9 @@ const server = http.createServer(app);
 //Initialize sockit.io server
 export const io = new Server(server, {
   cors: {
-    origin: "*",
-    methods: ["GET", "POST"],
+    origin: "https://aliibrahem219.github.io",
     credentials: true,
+    methods: ["GET", "POST"],
   },
 });
 //Store online users
@@ -82,7 +82,7 @@ io.on("connection", (socket) => {
 app.use(express.json({ limit: "4mb" }));
 app.use(
   cors({
-    origin: "*",
+    origin: "https://aliibrahem219.github.io",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
@@ -95,7 +95,7 @@ app.use("/api/auth", userRouter);
 app.use("/api/messages", messageRouter);
 //Connect to MongDb
 await connectDb();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8000;
 server.listen(PORT, "0.0.0.0", () =>
   console.log(`Server is running on port : ${PORT}`)
 );
