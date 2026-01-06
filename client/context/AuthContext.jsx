@@ -4,7 +4,8 @@ import toast from "react-hot-toast";
 import { io } from "socket.io-client";
 import { useNavigate } from "react-router-dom";
 
-const backendUrl = import.meta.env.VITE_BACKEND_URL;
+const backendUrl =
+  "https://industrial-rosana-tishreenuniversity-879bf761.koyeb.app";
 axios.defaults.baseURL = backendUrl;
 export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
@@ -159,7 +160,11 @@ export const AuthProvider = ({ children }) => {
     if (!userData || socket?.connected) return;
     const newSocket = io(
       backendUrl,
-      { withCredentials: true },
+      {
+        withCredentials: true,
+        transports: ["websocket"],
+        autoConnect: true,
+      },
       {
         query: {
           userId: userData._id,

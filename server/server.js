@@ -16,9 +16,14 @@ const server = http.createServer(app);
 //Initialize sockit.io server
 export const io = new Server(server, {
   cors: {
-    origin: "https://aliibrahem219.github.io",
+    origin: [
+      "https://aliibrahem219.github.io",
+      "https://aliibrahem219.github.io/AliChatApp",
+    ],
     credentials: true,
     methods: ["GET", "POST"],
+    transports: ["websocket", "polling"], // Allow both, but prioritize websocket
+    allowEIO3: true,
   },
 });
 //Store online users
